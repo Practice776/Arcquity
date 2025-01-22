@@ -16,7 +16,7 @@ export function LandingPage() {
           <div className="flex justify-between h-16">
             {/* Logo and Title */}
             <div className="flex items-center">
-              <img src="/images/icon logo.png" alt="Arcquity Logo" className="w-30 h-20" />
+              <img src="/images/icon-logo.png" alt="Arcquity Logo" className="w-30 h-20" />
               <span className="text-xl font-bold text-gray-900">Arcquity</span>
             </div>
 
@@ -312,7 +312,7 @@ export function LandingPage() {
             <div className="max-w-xs bg-white p-6 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl">
               <p className="text-gray-600 text-lg mb-4">"Arcquity made finding and managing my rental effortless. The filters allowed me to easily find rentals that matched my location, price, and amenities preferences. Autopay for rent payments and access to payment history made rent management hassle-free. I was also able to stay updated on lease renewals, ensuring smooth communication with my landlord throughout the process."</p>
               <div className="flex items-center space-x-4">
-                <img src="/images/Testimonials/test-1.jpg" alt="Client 1" className="w-12 h-12 rounded-full" />
+                <img src="/Testimonials/test-1.jpg" alt="Client 1" className="w-12 h-12 rounded-full" />
                 <div>
                   <p className="text-gray-800 font-semibold">John Doe</p>
                   <p className="text-gray-500">Tenant</p>
@@ -322,7 +322,7 @@ export function LandingPage() {
             <div className="max-w-xs bg-white p-6 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl">
               <p className="text-gray-600 text-lg mb-4">"Listing my property on Arcquity was quick and easy. The platform allowed me to upload property details, photos, and rental terms with ease. I was able to manage tenant profiles, track payments, and handle lease renewals digitally. The automated rent collection feature saved me time, and the analytics helped me keep track of income and expenses effortlessly. I received quality inquiries and successfully rented out my property in no time."</p>
               <div className="flex items-center space-x-4">
-                <img src="/images/Testimonials/test-2.jpg" alt="Client 2" className="w-12 h-12 rounded-full" />
+                <img src="/Testimonials/test-2.jpg" alt="Client 2" className="w-12 h-12 rounded-full" />
                 <div>
                   <p className="text-gray-800 font-semibold">Jane Smith</p>
                   <p className="text-gray-500">Landlord</p>
