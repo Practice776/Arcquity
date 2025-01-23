@@ -29,7 +29,7 @@ export function DashboardLayout({ children, title, navItems }: DashboardLayoutPr
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r border-gray-100 p-6">
         <div className="flex items-center mb-8">
-          <img src="/images/icon logo.png" alt="Arcquity Logo" className="w-25 h-20" />
+          <img src="/images/icon-logo.png" alt="Arcquity Logo" className="w-25 h-20" />
           <span className="text-xl font-bold text-gray-900">Arcquity</span>
         </div>
 
