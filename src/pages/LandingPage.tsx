@@ -84,87 +84,122 @@ export function LandingPage() {
             <div className="md:hidden flex items-center">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-gray-900 focus:outline-none"
+                className="border border-gray-300 rounded-full p-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                {isMobileMenuOpen ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
               </button>
             </div>
           </div>
 
-          {/* Mobile Navigation Menu */}
-          {isMobileMenuOpen && (
-            <div className="md:hidden bg-indigo-200 text-gray-900 border border-indigo-200 rounded-lg shadow-sm space-y-6 py-6">
-              <div className="flex flex-col items-center space-y-6">
-                <a href="#hero" className="text-gray-900 font-medium hover:text-gray-700 transition duration-200 px-4">Home</a>
-                <a href="#features" className="text-gray-900 font-medium hover:text-gray-700 transition duration-200 px-4">Features</a>
-                <a href="/properties" className="text-gray-900 font-medium hover:text-gray-700 transition duration-200 px-4">Properties</a>
-                <a href="/contact-us" className="text-gray-900 font-medium hover:text-gray-700 transition duration-200 px-4">Contact Us</a>
+            {/* Mobile Navigation Menu */}
+            {isMobileMenuOpen && (
+              <div className="md:hidden bg-indigo-200 text-gray-900 border border-indigo-200 rounded-lg shadow-sm py-6 px-4">
+                <div className="flex flex-col items-center space-y-4">
+                  {/* Navigation Links with Hover */}
+                  <a
+                    href="#hero"
+                    className="block w-full text-center text-gray-900 font-medium hover:text-indigo-600 hover:bg-gray-100 rounded-md transition duration-200 py-2"
+                  >
+                    Home
+                  </a>
+                  <a
+                    href="#features"
+                    className="block w-full text-center text-gray-900 font-medium hover:text-indigo-600 hover:bg-gray-100 rounded-md transition duration-200 py-2"
+                  >
+                    Features
+                  </a>
+                  <a
+                    href="/properties"
+                    className="block w-full text-center text-gray-900 font-medium hover:text-indigo-600 hover:bg-gray-100 rounded-md transition duration-200 py-2"
+                  >
+                    Properties
+                  </a>
+                  <a
+                    href="/contact-us"
+                    className="block w-full text-center text-gray-900 font-medium hover:text-indigo-600 hover:bg-gray-100 rounded-md transition duration-200 py-2"
+                  >
+                    Contact Us
+                  </a>
 
-                {/* Mobile Sign In Dropdown */}
-                <div className="relative">
+                  {/* Mobile Sign In Dropdown */}
+                  <div className="relative w-full">
+                    <button
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                      className="bg-indigo-600 w-full text-white font-medium px-4 py-2 rounded-md flex items-center justify-between hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
+                    >
+                      <span className="w-full text-center">Sign In</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className={`h-5 w-5 transform ${dropdownOpen ? "rotate-180" : "rotate-0"} transition-transform duration-200`}
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                    {dropdownOpen && (
+                      <div className="absolute mt-2 bg-white border border-gray-200 shadow-xl rounded-lg w-full">
+                        <button
+                          onClick={() => {
+                            setDropdownOpen(false);
+                            navigate("/tenant-signin");
+                          }}
+                          className="w-full text-left px-4 py-2 text-gray-800 hover:bg-indigo-100 focus:bg-indigo-200 transition duration-150"
+                        >
+                          Tenant Login
+                        </button>
+                        <button
+                          onClick={() => {
+                            setDropdownOpen(false);
+                            navigate("/landlord-signin");
+                          }}
+                          className="w-full text-left px-4 py-2 text-gray-800 hover:bg-indigo-100 focus:bg-indigo-200 transition duration-150"
+                        >
+                          Landlord Login
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Sign Up Button */}
                   <button
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
-                    className="bg-indigo-600 text-white font-medium px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      navigate("/signup");
+                    }}
+                    className="bg-indigo-600 w-full text-white font-medium px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors"
                   >
-                  <span>Sign In</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={`h-5 w-5 transform ${dropdownOpen ? 'rotate-180' : 'rotate-0'} transition-transform duration-200`}
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                    Sign Up
                   </button>
-                  {dropdownOpen && (
-                    <div className="absolute center-0 mt-2 bg-white border border-gray-200 shadow-xl rounded-lg w-44">
-                      <button
-                        onClick={() => {
-                          setDropdownOpen(false);
-                          navigate('/tenant-signin');
-                        }}
-                        className="w-full text-center px-4 py-2 text-gray-800 hover:bg-indigo-100 focus:bg-indigo-200 transition duration-150"
-                      >
-                        Tenant Login
-                      </button>
-                      <button
-                        onClick={() => {
-                          setDropdownOpen(false);
-                          navigate('/landlord-signin');
-                        }}
-                        className="w-full text-center px-4 py-2 text-gray-800 hover:bg-indigo-100 focus:bg-indigo-200 transition duration-150"
-                      >
-                        Landlord Login
-                      </button>
-                    </div>
-                  )}
                 </div>
-
-                <button
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    navigate('/signup');
-                  }}
-                  className="bg-indigo-600 text-white font-medium px-4 py-2 rounded-lg  hover:bg-indigo-700 transition-colors"
-                >
-                  Sign Up
-                </button>
               </div>
-            </div>
-          )}
+            )}
         </div>
       </nav>
 
