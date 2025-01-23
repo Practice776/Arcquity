@@ -17,12 +17,12 @@ export function SignInPage({ userType }: SignInPageProps) {
 
   const [errorMessage, setErrorMessage] = useState(''); // State for error message
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
-
+  const apiUrl = process.env.REACT_APP_API_URL;
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(''); // Reset any previous error message
     try {
-      const response = await fetch('http://localhost:5000/api/auth/signin', {
+      const response = await fetch(`${apiUrl}/api/auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

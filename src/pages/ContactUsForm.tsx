@@ -19,6 +19,8 @@ const ContactUsForm = () => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -37,7 +39,7 @@ const ContactUsForm = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact-us', {
+      const response = await fetch(`${apiUrl}/api/contact-us`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
