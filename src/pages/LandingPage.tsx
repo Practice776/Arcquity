@@ -7,90 +7,166 @@ import { CurrencyDollarIcon, DocumentTextIcon } from '@heroicons/react/16/solid'
 export function LandingPage() {
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navigation */}
-      <nav className="bg-indigo-10 border-b border-indigo-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            {/* Logo and Title */}
-            <div className="flex items-center">
-              <img src="/images/icon-logo.png" alt="Arcquity Logo" className="w-30 h-20" />
-              <span className="text-xl font-bold text-gray-900">Arcquity</span>
-            </div>
+{/* Navigation */}
+<nav className="bg-indigo-10 border-b border-indigo-200">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex justify-between items-center h-16">
+      {/* Logo and Title */}
+      <div className="flex items-center space-x-4">
+        <img src="/images/icon-logo.png" alt="Arcquity Logo" className="w-10 h-10" />
+        <span className="text-xl font-bold text-gray-900">Arcquity</span>
+      </div>
 
-            {/* Navigation Items */}
-            <div className="flex items-center space-x-4">
-              <a href="#hero" className="text-gray-600 hover:text-gray-900">
-                Home
-              </a>
-              <a href="#features" className="text-gray-600 hover:text-gray-900">
-                Features
-              </a>
-              <a href="/properties" className="text-gray-600 hover:text-gray-900">
-                Properties
-              </a>
-              <a href="/contact-us" className="text-gray-600 hover:text-gray-900">
-                Contact Us
-              </a>
-              {/* Dropdown Button */}
-              <div className="relative">
-                <button
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="bg-indigo-600 text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-200"
-                >
-                  <span>Sign In</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={`h-5 w-5 transform ${
-                      dropdownOpen ? 'rotate-180' : 'rotate-0'
-                    } transition-transform duration-200`}
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-                {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 bg-white border border-gray-200 shadow-lg rounded-lg w-44">
-                    <button
-                      onClick={() => {
-                        setDropdownOpen(false);
-                        navigate('/tenant-signin');
-                      }}
-                      className="w-full text-center px-4 py-2 text-gray-800 hover:bg-indigo-100 focus:bg-indigo-200 focus:outline-none transition duration-150"
-                    >
-                      Tenant Login
-                    </button>
-                    <button
-                      onClick={() => {
-                        setDropdownOpen(false);
-                        navigate('/landlord-signin');
-                      }}
-                      className="w-full text-center px-4 py-2 text-gray-800 hover:bg-indigo-100 focus:bg-indigo-200 focus:outline-none transition duration-150"
-                    >
-                      Landlord Login
-                    </button>
-                  </div>
-                )}
-              </div>
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex items-center space-x-6">
+        <a href="#hero" className="text-gray-900 hover:text-gray-700 transition duration-200">Home</a>
+        <a href="#features" className="text-gray-900 hover:text-gray-700 transition duration-200">Features</a>
+        <a href="/properties" className="text-gray-900 hover:text-gray-700 transition duration-200">Properties</a>
+        <a href="/contact-us" className="text-gray-900 hover:text-gray-700 transition duration-200">Contact Us</a>
 
+        {/* Dropdown for Sign In */}
+        <div className="relative">
+          <button
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            className="bg-indigo-600 text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
+          >
+            <span>Sign In</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`h-5 w-5 transform ${dropdownOpen ? 'rotate-180' : 'rotate-0'} transition-transform duration-200`}
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+          {dropdownOpen && (
+            <div className="absolute right-0 mt-2 bg-white border border-gray-200 shadow-lg rounded-lg w-44">
               <button
-                onClick={() => navigate('/signup')}
-                className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors"
+                onClick={() => {
+                  setDropdownOpen(false);
+                  navigate('/tenant-signin');
+                }}
+                className="w-full text-center px-4 py-2 text-gray-800 hover:bg-indigo-100 focus:bg-indigo-200 transition duration-150"
               >
-                Sign Up
+                Tenant Login
+              </button>
+              <button
+                onClick={() => {
+                  setDropdownOpen(false);
+                  navigate('/landlord-signin');
+                }}
+                className="w-full text-center px-4 py-2 text-gray-800 hover:bg-indigo-100 focus:bg-indigo-200 transition duration-150"
+              >
+                Landlord Login
               </button>
             </div>
-          </div>
+          )}
         </div>
-      </nav>
 
+        <button
+          onClick={() => navigate('/signup')}
+          className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors"
+        >
+          Sign Up
+        </button>
+      </div>
+
+      {/* Mobile Menu Button */}
+      <div className="md:hidden flex items-center">
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="text-gray-900 focus:outline-none"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    {/* Mobile Navigation Menu */}
+    {isMobileMenuOpen && (
+      <div className="md:hidden bg-indigo-200 text-gray-900 border border-indigo-200 rounded-lg shadow-sm space-y-6 py-6">
+        <div className="flex flex-col items-center space-y-6">
+          <a href="#hero" className="text-gray-900 font-medium hover:text-gray-700 transition duration-200 px-4">Home</a>
+          <a href="#features" className="text-gray-900 font-medium hover:text-gray-700 transition duration-200 px-4">Features</a>
+          <a href="/properties" className="text-gray-900 font-medium hover:text-gray-700 transition duration-200 px-4">Properties</a>
+          <a href="/contact-us" className="text-gray-900 font-medium hover:text-gray-700 transition duration-200 px-4">Contact Us</a>
+
+          {/* Mobile Sign In Dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className="bg-indigo-600 text-white font-medium px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
+            >
+            <span>Sign In</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`h-5 w-5 transform ${dropdownOpen ? 'rotate-180' : 'rotate-0'} transition-transform duration-200`}
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+            </button>
+            {dropdownOpen && (
+              <div className="absolute center-0 mt-2 bg-white border border-gray-200 shadow-xl rounded-lg w-44">
+                <button
+                  onClick={() => {
+                    setDropdownOpen(false);
+                    navigate('/tenant-signin');
+                  }}
+                  className="w-full text-center px-4 py-2 text-gray-800 hover:bg-indigo-100 focus:bg-indigo-200 transition duration-150"
+                >
+                  Tenant Login
+                </button>
+                <button
+                  onClick={() => {
+                    setDropdownOpen(false);
+                    navigate('/landlord-signin');
+                  }}
+                  className="w-full text-center px-4 py-2 text-gray-800 hover:bg-indigo-100 focus:bg-indigo-200 transition duration-150"
+                >
+                  Landlord Login
+                </button>
+              </div>
+            )}
+          </div>
+
+          <button
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              navigate('/signup');
+            }}
+            className="bg-indigo-600 text-white font-medium px-4 py-2 rounded-lg  hover:bg-indigo-700 transition-colors"
+          >
+            Sign Up
+          </button>
+        </div>
+      </div>
+    )}
+  </div>
+</nav>
 
       {/* Hero Section */}
       <div id="hero" className="bg-indigo-50 py-16">

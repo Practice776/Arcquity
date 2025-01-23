@@ -11,9 +11,9 @@ const FloatingButton: React.FC = () => {
   return (
     <button
       onClick={handleClick}
-      className="fixed bottom-6 right-6 bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75 flex items-center justify-center transition duration-200 ease-in-out"
+      className="fixed bottom-6 right-6 bg-indigo-600 bg-opacity-70 text-white px-5 py-3 rounded-full shadow-lg hover:bg-opacity-90 focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-50 flex items-center justify-center transition-all duration-300 ease-in-out transform hover:scale-105 sm:bottom-4 sm:right-4 sm:px-4 sm:py-2 sm:text-sm"
     >
-      <span className="text-lg font-semibold">Pro</span> {/* Professional label */}
+      <span className="text-lg font-semibold sm:text-base">Pro</span>
     </button>
   );
 };

@@ -115,10 +115,10 @@ const PricingPage: React.FC = () => {
       </section>
 
       {/* Back Button */}
-      <div className="absolute top-4 left-4">
+      <div className="fixed top-4 left-4 z-50">
         <button
           onClick={handleGoBack}
-          className="absolute top-4 left-4 bg-indigo-600 text-white w-16 h-16 rounded-full shadow-xl hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-75 flex items-center justify-center text-3xl font-semibold transition-all duration-300 ease-in-out transform hover:scale-105"
+          className="bg-indigo-600 bg-opacity-80 text-white w-14 h-14 rounded-full shadow-xl hover:bg-opacity-90 focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-50 flex items-center justify-center text-2xl font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 sm:w-12 sm:h-12 sm:text-xl"
         >
           ←
         </button>
