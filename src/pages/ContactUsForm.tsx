@@ -47,18 +47,27 @@ const ContactUsForm = () => {
         body: JSON.stringify(formData), // Send form data as JSON
       });
   
-      const result = await response.json(); // Parse the response body
-  
+      // Ensure response is JSON before attempting to parse it
       if (response.ok) {
-        setStatus({ message: 'Message sent successfully!', type: 'success' });
+        const result = await response.json(); // Parse the response body
+        setStatus({ message: result.message || 'Message sent successfully!', type: 'success' });
         setFormData({ name: '', email: '', message: '' }); // Clear form after successful submission
       } else {
-        // Handle any error message returned by the backend
-        setStatus({ message: result.message || 'Something went wrong. Please try again later.', type: 'error' });
+        const result = await response.json(); // Parse error response as JSON
+        setStatus({
+          message: result.message || 'Something went wrong. Please try again later.',
+          type: 'error',
+        });
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      setStatus({ message: 'Something went wrong. Please try again later.', type: 'error' });
+  
+      // Handle network errors or non-JSON responses
+      if (error instanceof SyntaxError) {
+        setStatus({ message: 'Invalid response format from server.', type: 'error' });
+      } else {
+        setStatus({ message: 'Network error. Please check your connection.', type: 'error' });
+      }
     } finally {
       setIsSubmitting(false); // Re-enable the submit button after submission attempt
     }
