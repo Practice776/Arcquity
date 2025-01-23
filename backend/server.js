@@ -7,8 +7,22 @@ const contactRoutes = require('./routes/contactRoutes');
 
 const app = express();
 
+// Define the allowed origin (Vercel's frontend URL)
+const allowedOrigins = ['https://arcquity.onrender.com']; // Replace with your actual frontend URL
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true); // Allow request
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST'],  // Allow these HTTP methods
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions)); // Use the configured CORS
 app.use(express.json());
 
 // Routes
