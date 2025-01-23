@@ -344,12 +344,6 @@ export function PropertiesPage() {
           <h1 className="text-2xl font-bold text-gray-900">
             {filteredProperties.length} Properties Available
           </h1>
-          <select className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
-            <option>Sort by: Featured</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
-            <option>Newest First</option>
-          </select>
         </div>
 
         {filteredProperties.length > 0 ? (
