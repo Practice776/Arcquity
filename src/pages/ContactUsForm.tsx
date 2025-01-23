@@ -23,42 +23,47 @@ const ContactUsForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setStatus({ message: '', type: '' });
-
+    setIsSubmitting(true); // Disable the submit button to prevent multiple submissions
+    setStatus({ message: '', type: '' }); // Clear any previous status messages
+  
+    // Client-side validation
     if (!formData.name || !formData.email || !formData.message) {
       setStatus({ message: 'All fields are required.', type: 'error' });
       setIsSubmitting(false);
       return;
     }
-
+  
     if (!validateEmail(formData.email)) {
       setStatus({ message: 'Please enter a valid email address.', type: 'error' });
       setIsSubmitting(false);
       return;
     }
-
+  
     try {
+      // Make POST request to the backend API
       const response = await fetch(`${apiUrl}/api/contact-us`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData), // Send form data as JSON
       });
-
-      const result = await response.json();
+  
+      const result = await response.json(); // Parse the response body
+  
       if (response.ok) {
         setStatus({ message: 'Message sent successfully!', type: 'success' });
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', email: '', message: '' }); // Clear form after successful submission
       } else {
-        setStatus({ message: 'Something went wrong. Please try again later.', type: 'error' });
+        // Handle any error message returned by the backend
+        setStatus({ message: result.message || 'Something went wrong. Please try again later.', type: 'error' });
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       setStatus({ message: 'Something went wrong. Please try again later.', type: 'error' });
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false); // Re-enable the submit button after submission attempt
     }
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-indigo-50 px-4">
