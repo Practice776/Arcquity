@@ -170,7 +170,7 @@ export function LandingPage() {
                             setDropdownOpen(false);
                             navigate("/tenant-signin");
                           }}
-                          className="w-full text-left px-4 py-2 text-gray-800 hover:bg-indigo-100 focus:bg-indigo-200 transition duration-150"
+                          className="w-full text-center px-4 py-2 text-gray-800 hover:bg-indigo-100 focus:bg-indigo-200 transition duration-150"
                         >
                           Tenant Login
                         </button>
@@ -179,7 +179,7 @@ export function LandingPage() {
                             setDropdownOpen(false);
                             navigate("/landlord-signin");
                           }}
-                          className="w-full text-left px-4 py-2 text-gray-800 hover:bg-indigo-100 focus:bg-indigo-200 transition duration-150"
+                          className="w-full text-center px-4 py-2 text-gray-800 hover:bg-indigo-100 focus:bg-indigo-200 transition duration-150"
                         >
                           Landlord Login
                         </button>
@@ -200,6 +200,8 @@ export function LandingPage() {
                 </div>
               </div>
             )}
+
+
         </div>
       </nav>
 
