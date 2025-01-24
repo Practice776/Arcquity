@@ -28,40 +28,40 @@ const queryClient = new QueryClient();
 const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/properties" element={<PropertiesPage />} />
+        <Router>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/properties" element={<PropertiesPage />} />
 
-          {/* Tenant Routes */}
-          <Route path="/tenant" element={<TenantDashboard />} />
-          <Route path="/tenant/payments" element={<TenantPayments />} />
-          <Route path="/tenant/payment-history" element={<TenantPaymentHistory />} />
-          <Route path="/tenant/support" element={<TenantSupport />} />
-          <Route path="/tenant/documents" element={<TenantDocuments />} />
-          <Route path="/tenant/settings" element={<TenantSettings />} />
-          <Route path="/tenant-signin" element={<SignInPage userType="tenant" />} /> {/* Tenant Sign-In Page */}
+            {/* Tenant Routes */}
+            <Route path="/tenant" element={<TenantDashboard />} />
+            <Route path="/tenant/payments" element={<TenantPayments />} />
+            <Route path="/tenant/payment-history" element={<TenantPaymentHistory />} />
+            <Route path="/tenant/support" element={<TenantSupport />} />
+            <Route path="/tenant/documents" element={<TenantDocuments />} />
+            <Route path="/tenant/settings" element={<TenantSettings />} />
+            <Route path="/tenant-signin" element={<SignInPage userType="tenant" />} /> {/* Tenant Sign-In Page */}
 
-          {/* Landlord Routes */}
-          <Route path="/landlord" element={<LandlordDashboard />} />
-          <Route path="/landlord/payments" element={<LandlordPayments />} />
-          <Route path="/landlord/settings" element={<LandlordSettings />} />
-          <Route path="/landlord/documents" element={<LandlordDocuments />} />
-          <Route path="/landlord/properties" element={<LandlordProperties />} />
-          <Route path="/landlord/tenant-requests" element={<LandlordTenantRequests />} />
-          <Route path="/landlord-signin" element={<SignInPage userType="landlord" />} /> {/* Landlord Sign-In Page */}
+            {/* Landlord Routes */}
+            <Route path="/landlord" element={<LandlordDashboard />} />
+            <Route path="/landlord/payments" element={<LandlordPayments />} />
+            <Route path="/landlord/settings" element={<LandlordSettings />} />
+            <Route path="/landlord/documents" element={<LandlordDocuments />} />
+            <Route path="/landlord/properties" element={<LandlordProperties />} />
+            <Route path="/landlord/tenant-requests" element={<LandlordTenantRequests />} />
+            <Route path="/landlord-signin" element={<SignInPage userType="landlord" />} /> {/* Landlord Sign-In Page */}
 
-          {/* Pricing Page Route */}
-          <Route path="/pricing" element={<PricingPage />} />
-          {/* Contact Us Page Route */}
-          <Route path="/contact-us" element={<ContactUsForm />} />  {/* New route for the Contact Us page */}
-          {/* Catch-all Route to redirect to Landing Page */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-        <FloatingButton /> {/* Floating button on all pages */}
-      </Router>
+            {/* Pricing Page Route */}
+            <Route path="/pricing" element={<PricingPage />} />
+            {/* Contact Us Page Route */}
+            <Route path="/contact-us" element={<ContactUsForm />} />  {/* New route for the Contact Us page */}
+            {/* Catch-all Route to redirect to Landing Page */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+          <FloatingButton /> {/* Floating button on all pages */}
+        </Router>
     </QueryClientProvider>
   );
 };
