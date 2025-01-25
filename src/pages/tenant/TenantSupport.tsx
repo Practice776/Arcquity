@@ -6,7 +6,7 @@ import {
   MessageSquare,
   FileText,
   Settings,
-  PlusCircle
+  PlusCircle,
 } from 'lucide-react';
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
 import { Button } from '../../components/ui/Button';
@@ -46,7 +46,7 @@ export function TenantSupport() {
       <div className="space-y-6">
         {/* New Request Button */}
         <div className="flex justify-end">
-          <Button variant="primary">
+          <Button variant="primary" className="w-full sm:w-auto">
             <PlusCircle className="w-5 h-5 mr-2" />
             New Support Request
           </Button>
@@ -60,10 +60,10 @@ export function TenantSupport() {
           <div className="divide-y divide-gray-100">
             {supportRequests.map((request) => (
               <div key={request.id} className="p-6 hover:bg-gray-50 transition-colors">
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex flex-col sm:flex-row sm:justify-between mb-2">
                   <h3 className="font-medium text-gray-900">{request.title}</h3>
                   <span
-                    className={`px-2 py-1 rounded-full text-sm font-medium ${
+                    className={`px-2 py-1 rounded-full text-xs font-medium ${
                       request.status === 'In Progress'
                         ? 'bg-yellow-100 text-yellow-800'
                         : 'bg-green-100 text-green-800'
@@ -72,8 +72,8 @@ export function TenantSupport() {
                     {request.status}
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-sm text-gray-500">
-                  <div className="space-x-4">
+                <div className="flex flex-col sm:flex-row sm:justify-between text-sm text-gray-500">
+                  <div className="space-x-4 mb-2 sm:mb-0">
                     <span>Created: {request.created}</span>
                     <span>Priority: {request.priority}</span>
                   </div>
@@ -157,7 +157,7 @@ export function TenantSupport() {
               </div>
             </div>
             <div className="flex justify-end">
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" className="w-full sm:w-auto">
                 Submit Request
               </Button>
             </div>

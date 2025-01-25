@@ -6,7 +6,7 @@ import {
   MessageSquare,
   FileText,
   Settings,
-  DollarSign
+  DollarSign,
 } from 'lucide-react';
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
 import { Button } from '../../components/ui/Button';
@@ -25,18 +25,22 @@ export function TenantPayments() {
     <DashboardLayout title="Payments" navItems={navItems}>
       <div className="space-y-6">
         {/* Current Payment Due */}
-        <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Current Payment Due</h2>
-          <div className="flex items-center justify-between">
+        <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Current Payment Due</h2>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-4 sm:space-y-0">
             <div>
-              <p className="text-gray-600">Next payment due on:</p>
-              <p className="text-2xl font-bold text-gray-900">April 1, 2024</p>
+              <p className="text-sm sm:text-base text-gray-600">Next payment due on:</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">April 1, 2024</p>
             </div>
             <div>
-              <p className="text-gray-600">Amount due:</p>
-              <p className="text-2xl font-bold text-indigo-600">₹22,500</p>
+              <p className="text-sm sm:text-base text-gray-600">Amount due:</p>
+              <p className="text-xl sm:text-2xl font-bold text-indigo-600">₹22,500</p>
             </div>
-            <Button variant="primary" size="lg" className="flex items-center">
+            <Button
+              variant="primary"
+              size="lg"
+              className="w-full sm:w-auto flex items-center justify-center"
+            >
               <span className="text-xl font-bold mr-2">₹</span>
               Pay Now
             </Button>
@@ -44,10 +48,10 @@ export function TenantPayments() {
         </section>
 
         {/* Payment Methods */}
-        <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Payment Methods</h2>
+        <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Payment Methods</h2>
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-4 sm:space-y-0 p-4 border border-gray-200 rounded-lg">
               <div className="flex items-center space-x-4">
                 <div className="bg-blue-50 p-2 rounded-lg">
                   <CreditCard className="w-6 h-6 text-blue-600" />
@@ -57,18 +61,20 @@ export function TenantPayments() {
                   <p className="text-sm text-gray-600">Expires 12/24</p>
                 </div>
               </div>
-              <Button variant="outline" size="sm">Remove</Button>
+              <Button variant="outline" size="sm" className="w-full sm:w-auto focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+                Remove
+              </Button>
             </div>
-            <Button variant="outline" className="w-full">
+            <Button variant="outline" className="w-full focus:ring-2 focus:ring-indigo-600 focus:outline-none">
               Add Payment Method
             </Button>
           </div>
         </section>
 
         {/* Autopay Settings */}
-        <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-gray-900">Autopay Settings</h2>
+        <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 space-y-4 sm:space-y-0">
+            <h2 className="text-lg sm:text-xl font-bold text-gray-900">Autopay Settings</h2>
             <div className="flex items-center">
               <span className="mr-2 text-sm text-gray-600">Status:</span>
               <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
@@ -76,10 +82,13 @@ export function TenantPayments() {
               </span>
             </div>
           </div>
-          <p className="text-gray-600 mb-4">
-            Your rent will be automatically paid on the 1st of each month using your default payment method.
+          <p className="text-sm sm:text-base text-gray-600 mb-4">
+            Your rent will be automatically paid on the 1st of each month using your default payment
+            method.
           </p>
-          <Button variant="outline">Manage Autopay</Button>
+          <Button variant="outline" className="w-full sm:w-auto focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+            Manage Autopay
+          </Button>
         </section>
       </div>
     </DashboardLayout>
