@@ -25,22 +25,31 @@ export function DashboardLayout({ children, title, navItems }: DashboardLayoutPr
     active: location.pathname === item.path,
   }));
 
+  // Prevent scrolling when sidebar is open
+  React.useEffect(() => {
+    if (isSidebarOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isSidebarOpen]);
+
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="flex">
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-100 p-6 transform ${
+        className={`fixed top-0 left-0 h-screen w-64 bg-white border-r border-gray-100 p-6 z-50 transform ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } transition-transform duration-300 ease-in-out md:static md:translate-x-0`}
       >
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center">
-            <img src="/images/icon-logo.png" alt="Arcquity Logo" className="w-25 h-20" />
+            <img src="/images/icon-logo.png" alt="Arcquity Logo" className="w-20 h-20" />
             <span className="text-xl font-bold text-gray-900 ml-3">Arcquity</span>
           </div>
           {/* Close Button for Mobile */}
           <button
-            className="absolute top-2 right-2 p-2 rounded-full bg-indigo-100 hover:ring-2 hover:ring-indigo-600 md:hidden"
+            className="absolute top-4 right-4 p-2 rounded-full bg-indigo-100 hover:ring-2 hover:ring-indigo-600 md:hidden"
             onClick={() => setIsSidebarOpen(false)}
           >
             <X className="w-6 h-6 text-indigo-600" />
@@ -60,8 +69,16 @@ export function DashboardLayout({ children, title, navItems }: DashboardLayoutPr
         </nav>
       </aside>
 
+      {/* Backdrop for Sidebar */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-30 z-40 md:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        ></div>
+      )}
+
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col min-h-screen">
         {/* Header */}
         <header className="bg-white border-b border-gray-100 px-8 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
@@ -91,7 +108,7 @@ export function DashboardLayout({ children, title, navItems }: DashboardLayoutPr
         </header>
 
         {/* Page Content */}
-        <div className="p-8">{children}</div>
+        <div className="p-8 relative">{children}</div>
       </div>
     </div>
   );

@@ -84,7 +84,7 @@ export function LandingPage() {
             <div className="md:hidden flex items-center">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="border border-gray-300 rounded-full p-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="border border-gray-300 rounded-full p-2 text-gray-900 bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
                 {isMobileMenuOpen ? (
                   <svg
