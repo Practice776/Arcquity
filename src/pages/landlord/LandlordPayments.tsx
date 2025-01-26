@@ -8,10 +8,9 @@ import {
   Settings,
   Download,
   Filter,
-  ChevronDown,
   DollarSign,
   TrendingUp,
-  Calendar
+  Calendar,
 } from 'lucide-react';
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
 import { Button } from '../../components/ui/Button';
@@ -35,7 +34,7 @@ const payments = [
     amount: '₹25,000',
     status: 'Paid',
     date: 'Mar 1, 2024',
-    paymentMethod: 'Credit Card'
+    paymentMethod: 'Credit Card',
   },
   {
     id: 2,
@@ -45,7 +44,7 @@ const payments = [
     amount: '₹18,000',
     status: 'Pending',
     date: 'Mar 5, 2024',
-    paymentMethod: 'Bank Transfer'
+    paymentMethod: 'Bank Transfer',
   },
   {
     id: 3,
@@ -55,7 +54,7 @@ const payments = [
     amount: '₹22,000',
     status: 'Overdue',
     date: 'Feb 28, 2024',
-    paymentMethod: 'UPI'
+    paymentMethod: 'UPI',
   },
 ];
 
@@ -64,45 +63,31 @@ export function LandlordPayments() {
     <DashboardLayout title="Payments" navItems={navItems}>
       {/* Stats Overview */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <StatCard
-          icon={DollarSign}
-          label="Total Revenue"
-          value="₹2,45,000"
-          trend="15.4"
-        />
-        <StatCard
-          icon={TrendingUp}
-          label="Collection Rate"
-          value="95%"
-          trend="2.1"
-        />
-        <StatCard
-          icon={Calendar}
-          label="Due This Month"
-          value="₹1,85,000"
-        />
+        <StatCard icon={DollarSign} label="Total Revenue" value="₹2,45,000" trend="15.4" />
+        <StatCard icon={TrendingUp} label="Collection Rate" value="95%" trend="2.1" />
+        <StatCard icon={Calendar} label="Due This Month" value="₹1,85,000" />
       </div>
 
       {/* Filters and Actions */}
-      <div className="flex justify-between items-center mb-8">
-        <div className="flex items-center space-x-4">
-          <Button variant="outline" size="sm">
+      <div className="flex flex-wrap justify-between gap-4 items-center mb-8">
+        <div className="flex flex-wrap gap-4 w-full lg:w-auto">
+          <Button variant="outline" size="sm" className="w-full lg:w-auto">
             <Filter className="w-4 h-4 mr-2" />
             Filter
           </Button>
-          <select className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <select className="w-full lg:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
             <option>All Properties</option>
             <option>Sunnyvale Apartments</option>
             <option>Green Valley Complex</option>
           </select>
-          <select className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <select className="w-full lg:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
             <option>All Status</option>
             <option>Paid</option>
             <option>Pending</option>
             <option>Overdue</option>
           </select>
         </div>
-        <Button variant="outline" size="sm">
+        <Button variant="outline" size="sm" className="w-full lg:w-auto">
           <Download className="w-4 h-4 mr-2" />
           Export
         </Button>
@@ -110,7 +95,7 @@ export function LandlordPayments() {
 
       {/* Payments Table */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-        <div className="overflow-x-auto">
+        <div className="hidden lg:block overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
@@ -151,13 +136,15 @@ export function LandlordPayments() {
                     <div className="text-sm font-medium text-gray-900">{payment.amount}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                      payment.status === 'Paid'
-                        ? 'bg-green-100 text-green-800'
-                        : payment.status === 'Pending'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-red-100 text-red-800'
-                    }`}>
+                    <span
+                      className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                        payment.status === 'Paid'
+                          ? 'bg-green-100 text-green-800'
+                          : payment.status === 'Pending'
+                          ? 'bg-yellow-100 text-yellow-800'
+                          : 'bg-red-100 text-red-800'
+                      }`}
+                    >
                       {payment.status}
                     </span>
                   </td>
@@ -176,6 +163,47 @@ export function LandlordPayments() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile View Cards */}
+        <div className="lg:hidden p-4 space-y-4">
+          {payments.map((payment) => (
+            <div
+              key={payment.id}
+              className="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200"
+            >
+              <h3 className="text-sm font-medium text-gray-900 mb-2">{payment.tenant}</h3>
+              <p className="text-sm text-gray-500 mb-1">
+                <strong>Property:</strong> {payment.property} (Unit {payment.unit})
+              </p>
+              <p className="text-sm text-gray-500 mb-1">
+                <strong>Amount:</strong> {payment.amount}
+              </p>
+              <p className="text-sm text-gray-500 mb-1">
+                <strong>Status:</strong>{' '}
+                <span
+                  className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                    payment.status === 'Paid'
+                      ? 'bg-green-100 text-green-800'
+                      : payment.status === 'Pending'
+                      ? 'bg-yellow-100 text-yellow-800'
+                      : 'bg-red-100 text-red-800'
+                  }`}
+                >
+                  {payment.status}
+                </span>
+              </p>
+              <p className="text-sm text-gray-500 mb-1">
+                <strong>Date:</strong> {payment.date}
+              </p>
+              <p className="text-sm text-gray-500 mb-3">
+                <strong>Payment Method:</strong> {payment.paymentMethod}
+              </p>
+              <Button variant="outline" size="sm">
+                View Details
+              </Button>
+            </div>
+          ))}
         </div>
       </div>
     </DashboardLayout>

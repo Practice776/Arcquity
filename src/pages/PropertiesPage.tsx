@@ -159,6 +159,9 @@ export function PropertiesPage() {
     setSearchTerm('');
   };
 
+const handleGoBack = () => {
+  navigate(-1); // Redirect to the home page
+};
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
@@ -172,6 +175,15 @@ export function PropertiesPage() {
           </div>
         </div>
       </nav>
+      {/* Back Button */}
+      <div className="fixed top-3 right-4 z-50">
+        <button
+          onClick={handleGoBack}
+          className="bg-indigo-600 bg-opacity-80 text-white w-14 h-14 rounded-full shadow-xl hover:bg-opacity-90 focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-50 flex items-center justify-center text-2xl font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 sm:w-12 sm:h-12 sm:text-xl"
+        >
+          ←
+        </button>
+      </div>
 
       {/* Search and Filters Section */}
       <div className="bg-indigo-50 border-b border-indigo-200 py-6 shadow-sm">

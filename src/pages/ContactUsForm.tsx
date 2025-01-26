@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ContactUsForm = () => {
+  const navigate = useNavigate(); // Use the useNavigate hook
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -58,107 +61,119 @@ const ContactUsForm = () => {
     }
   };
 
+  const handleGoBack = () => {
+    navigate(-1); // Go back to the previous page
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-indigo-50 px-4">
-  <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-8 max-w-2xl w-full">
-    <h2 className="text-3xl font-semibold text-gray-900 mb-6 text-center">Contact Us</h2>
-    <p className="text-gray-600 text-center mb-6">
-      Have questions or need assistance? Reach out to us using the form below or contact us directly.
-    </p>
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Name Field */}
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-          Name
-        </label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          placeholder="Your Full Name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-          required
-          autoComplete="off"
-        />
-      </div>
-
-      {/* Email Field */}
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-          Email
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="Your Email Address"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 transition duration-200 ease-in-out"
-          required
-          autoComplete="off"
-          aria-describedby="emailHelp"
-        />
-        {/* Optional: Email helper text */}
-        <p id="emailHelp" className="text-xs text-gray-500 mt-1">
-          We'll never share your email with anyone else.
+      <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-8 max-w-2xl w-full">
+        <h2 className="text-3xl font-semibold text-gray-900 mb-6 text-center">Contact Us</h2>
+        <p className="text-gray-600 text-center mb-6">
+          Have questions or need assistance? Reach out to us using the form below or contact us directly.
         </p>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Name Field */}
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+              Name
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Your Full Name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              required
+              autoComplete="off"
+            />
+          </div>
+
+          {/* Email Field */}
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Your Email Address"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 transition duration-200 ease-in-out"
+              required
+              autoComplete="off"
+              aria-describedby="emailHelp"
+            />
+            {/* Optional: Email helper text */}
+            <p id="emailHelp" className="text-xs text-gray-500 mt-1">
+              We'll never share your email with anyone else.
+            </p>
+          </div>
+
+          {/* Message Field */}
+          <div>
+            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows={6}
+              placeholder="Type your message here..."
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              required
+            />
+          </div>
+
+          {/* Submit Button */}
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className={`bg-indigo-600 text-white px-8 py-3 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                isSubmitting ? 'bg-indigo-400 cursor-not-allowed' : ''
+              }`}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Sending...' : 'Send Message'}
+            </button>
+          </div>
+        </form>
+
+        {/* Status Message */}
+        {status.message && (
+          <p
+            className={`mt-4 text-center font-medium ${
+              status.type === 'success' ? 'text-green-600' : 'text-red-600'
+            }`}
+          >
+            {status.message}
+          </p>
+        )}
+
+        {/* Alternative Contact Information */}
+        <div className="text-center mt-8">
+          <p className="text-gray-600">Or contact us directly at:</p>
+          <p className="text-gray-900 font-medium">Phone: +91 1234567890</p>
+          <p className="text-gray-900 font-medium">Email: support@arcquity.com</p>
+        </div>
+
+        {/* Back Button */}
+        <div className="fixed top-4 left-4 z-50">
+          <button
+            onClick={handleGoBack}
+            className="bg-indigo-600 bg-opacity-80 text-white w-14 h-14 rounded-full shadow-xl hover:bg-opacity-90 focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-50 flex items-center justify-center text-2xl font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 sm:w-12 sm:h-12 sm:text-xl"
+          >
+            ←
+          </button>
+        </div>
       </div>
-
-      {/* Message Field */}
-      <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-          Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          rows={6}
-          placeholder="Type your message here..."
-          value={formData.message}
-          onChange={handleChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-          required
-        />
-      </div>
-
-      {/* Submit Button */}
-      <div className="flex justify-center">
-        <button
-          type="submit"
-          className={`bg-indigo-600 text-white px-8 py-3 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
-            isSubmitting ? 'bg-indigo-400 cursor-not-allowed' : ''
-          }`}
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? 'Sending...' : 'Send Message'}
-        </button>
-      </div>
-    </form>
-
-    {/* Status Message */}
-    {status.message && (
-      <p
-        className={`mt-4 text-center font-medium ${
-          status.type === 'success' ? 'text-green-600' : 'text-red-600'
-        }`}
-      >
-        {status.message}
-      </p>
-    )}
-
-    {/* Alternative Contact Information */}
-    <div className="text-center mt-8">
-      <p className="text-gray-600">Or contact us directly at:</p>
-      <p className="text-gray-900 font-medium">Phone: +91 1234567890</p>
-      <p className="text-gray-900 font-medium">Email: support@arcquity.com</p>
     </div>
-  </div>
-</div>
-
-
   );
 };
 

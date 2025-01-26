@@ -11,12 +11,10 @@ import {
   Filter,
   MapPin,
   Users,
-  DollarSign,
-  Percent
+  Percent,
 } from 'lucide-react';
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
 import { Button } from '../../components/ui/Button';
-import { Input } from '../../components/ui/Input';
 
 const navItems = [
   { icon: Home, label: 'Dashboard', path: '/landlord' },
@@ -36,7 +34,7 @@ const properties = [
     units: 25,
     occupied: 20,
     revenue: '₹1,25,000',
-    occupancyRate: '80%'
+    occupancyRate: '80%',
   },
   {
     id: 2,
@@ -46,7 +44,7 @@ const properties = [
     units: 15,
     occupied: 14,
     revenue: '₹95,000',
-    occupancyRate: '93%'
+    occupancyRate: '93%',
   },
 ];
 
@@ -54,22 +52,22 @@ export function LandlordProperties() {
   return (
     <DashboardLayout title="Properties" navItems={navItems}>
       {/* Header Actions */}
-      <div className="flex justify-between items-center mb-8">
-        <div className="flex items-center space-x-4">
-          <div className="relative">
+      <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
+        <div className="flex flex-wrap items-center gap-4 w-full lg:w-auto">
+          <div className="relative w-full lg:w-auto">
             <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               placeholder="Search properties..."
-              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full lg:w-auto pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             />
           </div>
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" className="w-full lg:w-auto">
             <Filter className="w-4 h-4 mr-2" />
             Filters
           </Button>
         </div>
-        <Button variant="primary">
+        <Button variant="primary" className="w-full lg:w-auto">
           <Plus className="w-5 h-5 mr-2" />
           Add Property
         </Button>
@@ -78,15 +76,18 @@ export function LandlordProperties() {
       {/* Properties Grid */}
       <div className="grid grid-cols-1 gap-6">
         {properties.map((property) => (
-          <div key={property.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-lg transition-shadow">
-            <div className="flex items-start space-x-6">
+          <div
+            key={property.id}
+            className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-lg transition-shadow"
+          >
+            <div className="flex flex-col md:flex-row items-start md:space-x-6 space-y-4 md:space-y-0">
               <img
                 src={property.image}
                 alt={property.name}
-                className="w-48 h-48 object-cover rounded-xl"
+                className="w-full md:w-48 h-48 object-cover rounded-xl"
               />
               <div className="flex-1">
-                <div className="flex justify-between items-start">
+                <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900">{property.name}</h3>
                     <p className="text-gray-600 mt-1 flex items-center">
@@ -94,13 +95,17 @@ export function LandlordProperties() {
                       {property.address}
                     </p>
                   </div>
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm">Edit</Button>
-                    <Button variant="outline" size="sm">View Details</Button>
+                  <div className="flex flex-wrap gap-2">
+                    <Button variant="outline" size="sm" className="w-full md:w-auto">
+                      Edit
+                    </Button>
+                    <Button variant="outline" size="sm" className="w-full md:w-auto">
+                      View Details
+                    </Button>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-4 gap-4 mt-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <div className="flex items-center space-x-2 text-gray-600 mb-1">
                       <Building className="w-4 h-4" />
@@ -116,10 +121,10 @@ export function LandlordProperties() {
                     <p className="text-xl font-semibold text-gray-900">{property.occupied}</p>
                   </div>
                   <div className="bg-gray-50 p-4 rounded-lg">
-                  <div className="flex items-center space-x-2 text-gray-600 mb-1">
-                    <span className="w-4 h-6 text-gray-600">₹</span>
-                    <span className="text-sm">Monthly Revenue</span>
-                  </div>
+                    <div className="flex items-center space-x-2 text-gray-600 mb-1">
+                      <span className="w-4 h-6 text-gray-600">₹</span>
+                      <span className="text-sm">Monthly Revenue</span>
+                    </div>
                     <p className="text-xl font-semibold text-gray-900">{property.revenue}</p>
                   </div>
                   <div className="bg-gray-50 p-4 rounded-lg">

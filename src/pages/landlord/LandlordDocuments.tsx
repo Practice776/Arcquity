@@ -10,7 +10,7 @@ import {
   Download,
   Eye,
   File,
-  Search
+  Search,
 } from 'lucide-react';
 import { DashboardLayout } from '../../components/layout/DashboardLayout';
 import { Button } from '../../components/ui/Button';
@@ -32,7 +32,7 @@ const documents = [
     size: '2.5 MB',
     uploadedAt: 'Mar 15, 2024',
     property: 'Sunnyvale Apartments',
-    category: 'Lease Agreements'
+    category: 'Lease Agreements',
   },
   {
     id: 2,
@@ -41,7 +41,7 @@ const documents = [
     size: '1.8 MB',
     uploadedAt: 'Mar 10, 2024',
     property: 'All Properties',
-    category: 'Insurance'
+    category: 'Insurance',
   },
   {
     id: 3,
@@ -50,7 +50,7 @@ const documents = [
     size: '3.2 MB',
     uploadedAt: 'Mar 5, 2024',
     property: 'Green Valley Complex',
-    category: 'Contracts'
+    category: 'Contracts',
   },
 ];
 
@@ -58,29 +58,29 @@ export function LandlordDocuments() {
   return (
     <DashboardLayout title="Documents" navItems={navItems}>
       {/* Header Actions */}
-      <div className="flex justify-between items-center mb-8">
-        <div className="flex items-center space-x-4">
-          <div className="relative">
+      <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
+        <div className="flex flex-wrap items-center gap-4 w-full lg:w-auto">
+          <div className="relative w-full lg:w-auto">
             <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               placeholder="Search documents..."
-              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full lg:w-auto pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             />
           </div>
-          <select className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <select className="w-full lg:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
             <option>All Properties</option>
             <option>Sunnyvale Apartments</option>
             <option>Green Valley Complex</option>
           </select>
-          <select className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <select className="w-full lg:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
             <option>All Categories</option>
             <option>Lease Agreements</option>
             <option>Insurance</option>
             <option>Contracts</option>
           </select>
         </div>
-        <Button variant="primary">
+        <Button variant="primary" className="w-full lg:w-auto">
           <Upload className="w-5 h-5 mr-2" />
           Upload Document
         </Button>
@@ -88,7 +88,7 @@ export function LandlordDocuments() {
 
       {/* Documents Table */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-        <div className="overflow-x-auto">
+        <div className="hidden lg:block overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
@@ -155,6 +155,46 @@ export function LandlordDocuments() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile View Cards */}
+        <div className="lg:hidden p-4 space-y-4">
+          {documents.map((doc) => (
+            <div
+              key={doc.id}
+              className="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200"
+            >
+              <div className="flex items-center mb-3">
+                <File className="w-5 h-5 text-gray-400 mr-2" />
+                <h3 className="text-sm font-medium text-gray-900">{doc.name}</h3>
+              </div>
+              <p className="text-sm text-gray-500 mb-1">
+                <strong>Property:</strong> {doc.property}
+              </p>
+              <p className="text-sm text-gray-500 mb-1">
+                <strong>Category:</strong> {doc.category}
+              </p>
+              <p className="text-sm text-gray-500 mb-1">
+                <strong>Type:</strong> {doc.type}
+              </p>
+              <p className="text-sm text-gray-500 mb-1">
+                <strong>Size:</strong> {doc.size}
+              </p>
+              <p className="text-sm text-gray-500 mb-3">
+                <strong>Uploaded:</strong> {doc.uploadedAt}
+              </p>
+              <div className="flex space-x-2">
+                <Button variant="outline" size="sm">
+                  <Eye className="w-4 h-4 mr-2" />
+                  View
+                </Button>
+                <Button variant="outline" size="sm">
+                  <Download className="w-4 h-4 mr-2" />
+                  Download
+                </Button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </DashboardLayout>

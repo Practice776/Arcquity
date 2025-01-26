@@ -62,41 +62,53 @@ export function LandlordDashboard() {
 
       {/* Property Overview */}
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mb-8 hover:shadow-2xl transition-all">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-wrap items-center justify-between mb-6">
           <h2 className="text-xl font-semibold text-gray-900">Property Overview</h2>
-          <Button variant="outline" size="sm">View All Properties</Button>
+          <Button variant="outline" size="sm" className="mt-2 sm:mt-0">View All Properties</Button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="flex items-center space-x-6">
-            <img
-              src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
-              alt="Property"
-              className="w-48 h-32 object-cover rounded-xl"
-            />
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900">Sunnyvale Apartments</h3>
-              <p className="text-gray-600 mt-1 text-sm">456 Elm St, Sunnyvale, CA</p>
-              <div className="mt-4 flex items-center space-x-6">
-                <span className="text-sm text-gray-600">Units: <strong>25</strong></span>
-                <span className="text-sm text-gray-600">Occupied: <strong>20</strong></span>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {/* Property Card */}
+          {[
+            {
+              name: 'Sunnyvale Apartments',
+              address: '456 Elm St, Sunnyvale, CA',
+              units: 25,
+              occupied: 20,
+              image:
+                'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
+            },
+            {
+              name: 'Green Valley Complex',
+              address: '789 Oak Dr, Mountain View, CA',
+              units: 15,
+              occupied: 14,
+              image:
+                'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
+            },
+          ].map((property, index) => (
+            <div
+              key={index}
+              className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 rounded-lg overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+            >
+              <img
+                src={property.image}
+                alt={property.name}
+                className="w-full sm:w-48 h-32 object-cover"
+              />
+              <div className="p-4 flex-1">
+                <h3 className="text-lg font-semibold text-gray-900">{property.name}</h3>
+                <p className="text-gray-600 mt-1 text-sm">{property.address}</p>
+                <div className="mt-4 flex items-center justify-between text-sm text-gray-600">
+                  <span>
+                    Units: <strong>{property.units}</strong>
+                  </span>
+                  <span>
+                    Occupied: <strong>{property.occupied}</strong>
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="flex items-center space-x-6">
-            <img
-              src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
-              alt="Property"
-              className="w-48 h-32 object-cover rounded-xl"
-            />
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900">Green Valley Complex</h3>
-              <p className="text-gray-600 mt-1 text-sm">789 Oak Dr, Mountain View, CA</p>
-              <div className="mt-4 flex items-center space-x-6">
-                <span className="text-sm text-gray-600">Units: <strong>15</strong></span>
-                <span className="text-sm text-gray-600">Occupied: <strong>14</strong></span>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
